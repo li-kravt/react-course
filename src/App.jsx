@@ -1,19 +1,39 @@
 
+import { useState } from 'react'
 import './index.css'
-import { Counter } from './components/Counter'
-import { Input } from './components/Input'
+import { Post } from './components/post'
+
 
 function App() {
-
+  const [posts, setPosts] = useState([
+    {
+      id: 1,
+      title: "1 Post",
+      body: "1 description",
+      views: 122
+    },
+    {
+      id: 2,
+      title: "2 Post",
+      body: "2 description",
+      views: 185
+    },
+    {
+      id: 3,
+      title: "3 Post",
+      body: "3 description",
+      views: 144
+    }
+  ])
+  console.log(posts)
 
   return (
     <div className='App'>
-      <Input className='input' />
+
       <div className='counters'>
-        <Counter />
-        <Counter />
-        <Counter />
-        <Counter />
+        {posts.map((item) => (
+          <Post key={item.id} title={item.title} views={item.views} body={item.body} />
+        ))}
       </div>
     </div>
   )
