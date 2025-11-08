@@ -1,8 +1,7 @@
 
 import { useState } from 'react'
 import './index.css'
-import { Post } from './components/post'
-import { SectionPosts } from './components/SectionPosts'
+import { MyButton } from './components/UI/button/MyButton'
 
 
 function App() {
@@ -50,7 +49,11 @@ function App() {
 
   return (
     <div className='App'>
-      <SectionPosts data={{ posts, posts2 }} />
+      <form>
+        <input type='text' placeholder="Post's name" />
+        <input type='text' placeholder="Description" />
+        <MyButton />
+      </form>
     </div>
   )
 }
