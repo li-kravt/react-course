@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import './index.css'
 import { MyButton } from './components/UI/button/MyButton'
+import { SectionPosts } from './components/SectionPosts'
 
 
 function App() {
@@ -45,15 +46,31 @@ function App() {
       views: 144
     }
   ])
-  console.log(posts)
+
+  const [post, setPost] = useState({ title: "", description: "" })
+
+
 
   return (
     <div className='App'>
-      <form>
-        <input type='text' placeholder="Post's name" />
-        <input type='text' placeholder="Description" />
-        <MyButton />
+      <form onSubmit={(e) => e.preventDefault()}
+        className='form'>
+        <input type='text'
+          placeholder="Post's name"
+          value={post.title}
+          onChange={(e) => setPost({ ...post, title: e.target.value })}
+        />
+        <input type='text'
+          placeholder="Description"
+          value={post.description}
+          onChange={(e) => setPost({ ...post, description: e.target.value })} />
+        <MyButton type="button"
+          setPosts={setPosts}
+          post={post}
+          posts={posts}
+        ></MyButton>
       </form>
+      <SectionPosts data={{ posts, posts2 }} />
     </div>
   )
 }
