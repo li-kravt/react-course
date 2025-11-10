@@ -3,6 +3,7 @@ import { useState } from 'react'
 import './index.css'
 import { MyButton } from './components/UI/button/MyButton'
 import { SectionPosts } from './components/SectionPosts'
+import { PostForm } from './components/PostForm'
 
 
 function App() {
@@ -47,29 +48,15 @@ function App() {
     }
   ])
 
-  const [post, setPost] = useState({ title: "", description: "" })
+  const createPost = () => {
+    setPost({ ...post, title: e.target.value })
+  }
 
 
 
   return (
     <div className='App'>
-      <form onSubmit={(e) => e.preventDefault()}
-        className='form'>
-        <input type='text'
-          placeholder="Post's name"
-          value={post.title}
-          onChange={(e) => setPost({ ...post, title: e.target.value })}
-        />
-        <input type='text'
-          placeholder="Description"
-          value={post.description}
-          onChange={(e) => setPost({ ...post, description: e.target.value })} />
-        <MyButton type="button"
-          setPosts={setPosts}
-          post={post}
-          posts={posts}
-        ></MyButton>
-      </form>
+      <PostForm setPosts={setPosts} posts={posts} />
       <SectionPosts data={{ posts, posts2 }} />
     </div>
   )
